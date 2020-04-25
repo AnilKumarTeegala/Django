@@ -116,3 +116,12 @@ For creating a user with admin permissions
 python manage.py createsuperuser
 ```
 and set your username, email(not compulsory) and passsword
+
+
+## My First App Component
+
+for creating a custom app component
+```
+python manage.py startapp app_name
+```
+
