@@ -55,7 +55,7 @@ pip install django
 
 Thats it all setup now
 
-## Starting a New Project
+## Creating a Blank Django Project
 To start a new Django project, run the command below:
 ```
 django-admin startproject project1
@@ -78,5 +78,41 @@ Django/                  <-- higher level folder
  |    +-- manage.py
  +-- venv/                  <-- virtual environment folder
  ```
- 
- 
+### Working on Project
+
+Django comes with a simple web server installed. It’s very convenient during the development, so we don’t have to install anything else to run the project locally. We can test it by executing the command:
+```
+python manage.py runserver
+```
+For now, you can ignore the migration errors; we will get to that later.
+
+Now open the following URL in a Web browser: http://127.0.0.1:8000 and you should see the following page:
+
+![Webserver_Home](img/webserver.png)
+
+
+
+
+
+
+# Day2 25 April 2020
+
+## Built-In Components
+
+To accessing the admin login page visit
+
+http://127.0.0.1:8000/admin/login/?next=/admin/
+
+
+For creating the login credentails we need to migrate defalult Admin db schema so for doing it execute
+
+```
+python manage.py migrate
+```
+
+For creating a user with admin permissions
+
+```
+python manage.py createsuperuser
+```
+and set your username, email(not compulsory) and passsword
