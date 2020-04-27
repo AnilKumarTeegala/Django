@@ -70,7 +70,7 @@ Right now, our **Django** directory looks like this:
 ```
 Django/                  <-- higher level folder
  |-- myproject/             <-- django project folder
- |    |-- myproject/
+ |    |-- project1/
  |    |    |-- __init__.py
  |    |    |-- settings.py
  |    |    |-- urls.py
@@ -120,8 +120,60 @@ and set your username, email(not compulsory) and passsword
 
 ## My First App Component
 
-for creating a custom app component
+for creating a `custom-app` component
 ```
 python manage.py startapp app_name
 ```
+after creating we can see the directory structure as shown delow
 
+```
+Django/
+ |-- myproject/             <-- django project folder
+ |    |-- app_name/                <-- our new django app!
+ |    |    |-- migrations/
+ |    |    |    +-- __init__.py
+ |    |    |-- __init__.py
+ |    |    |-- admin.py
+ |    |    |-- apps.py
+ |    |    |-- models.py
+ |    |    |-- tests.py
+ |    |    +-- views.py
+ |    |-- project1/
+ |    |    |-- __init__.py
+ |    |    |-- settings.py
+ |    |    |-- urls.py
+ |    |    |-- wsgi.py
+ |    +-- manage.py
+ +-- venv/                  <-- virtual environment folder
+```
+
+
+# Day3 27 April 2020
+
+## Create `app` Objects in the Python Shell
+
+To Execute the commands in the cell we have to execute
+
+```
+python manage.py shell
+```
+python shell will be open like shown below
+
+```
+Python 3.8.2 (tags/v3.8.2:7b3ab59, Feb 25 2020, 23:03:10) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+```
+
+For writing the data in to an app using shell we hve to import it
+```
+from app.models import app
+```
+so for listing the all elements in the database we have execute
+```
+app.objects.all()
+```
+if we want to create new elements to the db
+```
+app.object.create(arg1 = data, arg2 = data, ..... argn = data)
+```
