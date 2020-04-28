@@ -147,6 +147,7 @@ Django/
  +-- venv/                  <-- virtual environment folder
 ```
 
+**`Note:`** After creating app we need to add the app name at `INSTALLED_APPS` list in `setting.py`
 
 # Day3 27 April 2020
 
@@ -177,3 +178,8 @@ if we want to create new elements to the db
 ```
 app.object.create(arg1 = data, arg2 = data, ..... argn = data)
 ```
+## Day4 28 April 2020 
+## Change a Model
+## Default Homepage to Custom Homepage
+## URL Routing and Requests
+## (1:10:23) 14 - Django Templates
