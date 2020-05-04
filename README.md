@@ -1,6 +1,6 @@
 # Django
 [![Python Version](https://img.shields.io/badge/python-3.x-brightgreen.svg)](https://python.org)
-[![Django Version](https://img.shields.io/badge/django-2.1.5-brightgreen.svg)](https://djangoproject.com)
+[![Django Version](https://img.shields.io/badge/django-3.0.3-brightgreen.svg)](https://djangoproject.com)
 
 This repo containg the learning content of Django
 
@@ -88,10 +88,7 @@ For now, you can ignore the migration errors; we will get to that later.
 
 Now open the following URL in a Web browser: http://127.0.0.1:8000 and you should see the following page:
 
-![Webserver_Home](img/webserver.png)
-
-
-
+![Webserver_Home](../img/webserver.png)
 
 
 
@@ -148,6 +145,7 @@ Django/
 ```
 
 **`Note:`** After creating app we need to append our `app` name to **`INSTALLED_APPS`** list in **`setting.py`**
+
 ## Your First App Component
 
 By completing the above steps I have created an app called **`Products`**
@@ -177,6 +175,12 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 **`Note:`** Whenever we made change to the manage.py --> changes to DB occur to save it we need to migrate 
+
+finally after making change if we login to http://127.0.0.1:8000/admin we need to see the Products and by clicking it we can observe list of product avaliable as shown like below
+
+![firstProduct](../img/firstProduct.png)
+
+
 # Day3 27 April 2020
 
 ## Create `app` Objects in the Python Shell
@@ -212,6 +216,24 @@ app.object.create(arg1 = data, arg2 = data, ..... argn = data)
 
 ## Change a Model
 
+So Yesterday I have created Products app and add 4 fields in the `models.py`
+
+so if we observe we see that some `TextFields` they are to type of Model fields we can find out them at [Model field ](https://docs.djangoproject.com/en/3.0/ref/models/fields/) so by going to documentation I have choosen the integer type to the prices and updated the arguments to the fields as shown below
+```python
+from django.db import models
+
+# Create your models here.
+class Product(models.Model):
+	title 		= models.CharField(max_length = 120)
+	description = models.TextField(blank = True, null = True)
+	price       = models.DecimalField(decimal_places = 2, max_digits = 1000)
+	Summary     = models.TextField(default = 'This is cool!')
+	features	= models.BooleanField(default = True, null = False)
+```
+after updating the field we can them by loging into http://127.0.0.1:8000/admin/ and going to Products as shown below
+
+![updateProduct](../img/updateProduct.png)
+
 ## Default Homepage to Custom Homepage
 For Pages I'll be creating an app called **`pages`**
 
@@ -234,8 +256,7 @@ from pages.views import home_view
 
 urlpatterns = [path('home/', home_view, name='home')]
  ```
-thats it if we visit `http://127.0.0.1:8000/home/` we can see the Hello World Django in H1 font
-#creating a function Home_view
+thats it if we visit `http://127.0.0.1:8000/home/` we can see the `Hello World Django` in H1 font
 
 ## URL Routing and Requests
 Like above we can add as many pages as we need by adding HTTP responses to the `views.py` and urls in the `urls.py` as shown below
