@@ -6,7 +6,7 @@ This repo containg the learning content of Django
 
 
 
-# Day-1: 24 April 2020
+# Day-1 24 April 2020
 
 While working on Django it is better to create a virtual environment to run project files.
 
@@ -295,4 +295,40 @@ path('admin/', admin.site.urls),
 ]
 ```
 
+Day5 04 May 2020
+
 ## Django Templates
+
+Instead of returning HTTP response we can send the predefined templetes to the django so for using them in project I have created a directory called `Templetes` and created few templetes like
+- Home.html
+- About.html
+- Contact.html
+- Social.html
+
+and Updating them in the `views.py` using the `render` functioon from `django.shortcuts`
+
+```python
+# Syntax
+# render takes to few arugments they are
+render(request, templete_name, context)
+```
+example
+```python
+from django.shortcuts import render
+
+def home_view(*args, **kwargs):
+	print(args, kwargs)
+	return render(request, "home.html", {})
+```
+after adding the templete to the we need to add the templete path to `DIRS` list --> templetes list in `settings.py` like shown below
+```python
+'your/path/to/templetes'
+```
+or
+```python
+os.path.join(BASE_DIR, "templetes")
+```
+
+## Django Templating Engine Basics
+
+
