@@ -147,8 +147,36 @@ Django/
  +-- venv/                  <-- virtual environment folder
 ```
 
-**`Note:`** After creating app we need to add the app name at `INSTALLED_APPS` list in `setting.py`
+**`Note:`** After creating app we need to append our `app` name to **`INSTALLED_APPS`** list in **`setting.py`**
+## Your First App Component
 
+By completing the above steps I have created an app called **`Products`**
+
+I'm using this app for creating products. So for storing the data of the product into the backend / Database we need too create it so for adding it we need to create it in `models.py` of `products` app. I'm considering the 4 parameters they are
+1. Title
+2. Description
+3. Price
+4. Summary
+so for adding it I've created a class in `manage.py` like shown below and save it
+
+```python
+from django.db import models
+
+# Create your models here.
+class Product(models.Model):
+	title 		= models.TextField()
+	description = models.TextField()
+	price       = models.TextField()
+	Summary     = models.TextField(default = 'This is cool!') # default is th arg which will be stored if no data is entered
+ ```
+After add above we need to make migrate our database to save the changes to it
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
+**`Note:`** Whenever we made change to the manage.py --> changes to DB occur to save it we need to migrate 
 # Day3 27 April 2020
 
 ## Create `app` Objects in the Python Shell
@@ -167,19 +195,83 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 For writing the data in to an app using shell we hve to import it
-```
+```python
 from app.models import app
 ```
 so for listing the all elements in the database we have execute
-```
+```python
 app.objects.all()
 ```
 if we want to create new elements to the db
-```
+```python
 app.object.create(arg1 = data, arg2 = data, ..... argn = data)
 ```
-## Day4 28 April 2020 
+
+
+## Day4 28 April 2020
+
 ## Change a Model
+
 ## Default Homepage to Custom Homepage
+For Pages I'll be creating an app called **`pages`**
+
+To change the Home page to the custom home page we need to add the required html content by creating a function in the `views.py` in the created app and we need to update `url.py` in the project by importing and adding the path
+
+example:
+Updating `views.py`
+```python
+from django.http import HttpResponse
+
+def home_view(*args, **kwargs):
+	return HttpResponse("<h1>Hello World Django</h1>")
+```
+and updating `url.py` like below
+```python
+from django.contrib import admin
+from django.urls import path
+
+from pages.views import home_view
+
+urlpatterns = [path('home/', home_view, name='home')]
+ ```
+thats it if we visit `http://127.0.0.1:8000/home/` we can see the Hello World Django in H1 font
+#creating a function Home_view
+
 ## URL Routing and Requests
-## (1:10:23) 14 - Django Templates
+Like above we can add as many pages as we need by adding HTTP responses to the `views.py` and urls in the `urls.py` as shown below
+**`views.py`**
+```python
+from django.http import HttpResponse
+from django.shortcuts import render
+
+def home_view(*args, **kwargs):
+	return HttpResponse("<h1>Hello World Django</h1>")
+
+def contact_view(*args, **kwargs):
+	return HttpResponse("<h1>Contact Page</h1>")
+
+def about_view(*args, **kwargs):
+	return HttpResponse("<h1>About Page</h1>")
+
+def social_view(*args, **kwargs):
+	return HttpResponse("<h1>Social Page</h1>")
+```
+
+**`urls.py`**
+```python
+from django.contrib import admin
+from django.urls import path
+
+from pages.views import home_view, contact_view, social_view, about_view
+
+urlpatterns = [
+	path('', home_view, name='home'),
+	path('about/', about_view, name = 'about'),
+	path('home/', home_view, name='home'),
+	path('social/', social_view, name = 'social'),
+	path('contact/', contact_view, name='home'),
+path('admin/', admin.site.urls),
+]
+```
+
+## Django Templates
